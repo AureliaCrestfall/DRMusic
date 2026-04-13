@@ -2,5 +2,8 @@
 {
     public class Record
     {
+
+        string title;
+
     }
 }
