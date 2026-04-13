@@ -1,5 +1,6 @@
 
 using DRMusic.Repo;
+using DRMusic.Secret;
 
 namespace DRMusic
 {
@@ -7,12 +8,14 @@ namespace DRMusic
     {
         public static void Main(string[] args)
         {
+            ConnectionString connectionString = new ConnectionString();
+
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
 
             builder.Services.AddControllers();
-            builder.Services.AddSingleton<RecordRepo>(new RecordRepo());
+            builder.Services.AddSingleton<RecordRepo>(new RecordRepo(connectionString.Connection));
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
