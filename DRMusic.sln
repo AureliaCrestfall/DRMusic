@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.3.11520.95 d18.3
+VisualStudioVersion = 18.3.11520.95
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DRMusic", "DRMusic.csproj", "{60A56795-59ED-4F20-9784-40EBB50B161B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DRMusicTest", "..\DRMusicTest\DRMusicTest.csproj", "{952BC6BD-4156-497E-8FCC-85630F36AD31}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DRmusic_Test", "..\DRmusic_Test\DRmusic_Test.csproj", "{AAF40B01-02B6-4076-B841-F1DC9C58A7C4}"
 EndProject
@@ -19,10 +17,6 @@ Global
 		{60A56795-59ED-4F20-9784-40EBB50B161B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60A56795-59ED-4F20-9784-40EBB50B161B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60A56795-59ED-4F20-9784-40EBB50B161B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{952BC6BD-4156-497E-8FCC-85630F36AD31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{952BC6BD-4156-497E-8FCC-85630F36AD31}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{952BC6BD-4156-497E-8FCC-85630F36AD31}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{952BC6BD-4156-497E-8FCC-85630F36AD31}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AAF40B01-02B6-4076-B841-F1DC9C58A7C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AAF40B01-02B6-4076-B841-F1DC9C58A7C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAF40B01-02B6-4076-B841-F1DC9C58A7C4}.Release|Any CPU.ActiveCfg = Release|Any CPU

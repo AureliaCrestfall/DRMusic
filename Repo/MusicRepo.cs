@@ -3,36 +3,37 @@ using Microsoft.Data.SqlClient;
 
 namespace DRMusic.Repo
 {
-    public class RecordRepo : IRecordRepo
+    public class MusicRepo : IMusicRepo
     {
 
         private string _connectionString;
 
-        public RecordRepo(string connectionString)
+        public MusicRepo(string connectionString)
         {
             _connectionString = connectionString;
         }
 
-        public List<Record> GetAllRecords()
+        public List<Music> GetAllMusics()
         {
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand("SELECT Title, Artist, Duration, PublicationYear FROM Records", connection);
+                var command = new SqlCommand("SELECT Title, Artist, Duration, PublicationYear, ID FROM MusicRecords", connection);
                 var reader = command.ExecuteReader();
-                var records = new List<Record>();
+                var musics = new List<Music>();
                 while (reader.Read())
                 {
-                    var record = new Record
+                    var music = new Music
                     {
+                        Id = reader.GetInt32(4),
                         Title = reader.GetString(0),
                         Artist = reader.GetString(1),
                         Duration = reader.GetInt32(2),
                         PublicationYear = reader.GetDateTime(3)
                     };
-                    records.Add(record);
+                    musics.Add(music);
                 }
-                return records;
+                return musics;
             }
         }
     }
