@@ -19,9 +19,9 @@ namespace DRMusic.Controllers
 
         // GET: api/<MusicController>
         [HttpGet]
-        public IEnumerable<Music> Get()
+        public IEnumerable<Music> Get(string search,string filter)
         {
-            return _musicRepo.GetAllMusics();
+            return _musicRepo.GetAllMusics(search, filter);
         }
 
         // GET api/<MusicController>/5

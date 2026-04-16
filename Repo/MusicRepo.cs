@@ -1,5 +1,6 @@
 ﻿using DRMusic.Model;
 using Microsoft.Data.SqlClient;
+using System.Reflection;
 
 namespace DRMusic.Repo
 {
@@ -13,12 +14,12 @@ namespace DRMusic.Repo
             _connectionString = connectionString;
         }
 
-        public List<Music> GetAllMusics()
+        public List<Music> GetAllMusics(string search,string filter)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand("SELECT Title, Artist, Duration, PublicationYear, ID FROM MusicRecords", connection);
+                var command = new SqlCommand($"SELECT Title, Artist, Duration, PublicationYear, ID FROM MusicRecords where {search} like {filter}%", connection);
                 var reader = command.ExecuteReader();
                 var musics = new List<Music>();
                 while (reader.Read())
@@ -33,8 +34,15 @@ namespace DRMusic.Repo
                     };
                     musics.Add(music);
                 }
+                if(search != null)
+                {
+                    musics = musics.OrderBy(music => music.Id).ToList();
+                }
+
+
                 return musics;
             }
         }
+
     }
 }
