@@ -19,34 +19,92 @@ namespace DRMusic.Controllers
 
         // GET: api/<MusicController>
         [HttpGet]
-        public IEnumerable<Music> Get()
+        public ActionResult<IEnumerable<Music>>Get()
         {
-            return _musicRepo.GetAllMusics();
+             
+            List<Music> music = _musicRepo.GetAllMusics();
+            if (music != null)
+            {
+
+
+                return Ok(music);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         // GET api/<MusicController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public ActionResult<Music> Get(int id)
         {
-            return "value";
+            
+            Music music = _musicRepo.Get(id);
+            if (music != null)
+            {
+
+
+                return Ok(music);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         // POST api/<MusicController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<Music> Post([FromBody] Music music)
         {
+            Music created = _musicRepo.Add(music.Title, music.Artist,music.Duration,music.PublicationYear);
+            if(created != null)
+            {
+
+            
+                return Ok(created);
+            }
+            else 
+            {
+                return BadRequest();
+            }
+            
         }
 
         // PUT api/<MusicController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult<Music> Put(int id, string title, string artist, int duration, DateTime publicationYear)
         {
+             
+            Music music = _musicRepo.Update(id, title, artist, duration, publicationYear);
+            if (music != null)
+            {
+
+
+                return Ok(music);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         // DELETE api/<MusicController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult<Music> Delete(int id)
         {
+             
+            Music music = _musicRepo.Delete(id);
+            if (music != null)
+            {
+
+
+                return Ok(music);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }
