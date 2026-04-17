@@ -77,27 +77,27 @@ namespace DRMusic.Controllers
         // PUT api/<MusicController>/5
         [Authorize]
         [HttpPut("{id}")]
-        public ActionResult<Music> Put(int id, string title, string artist, int duration, DateTime publicationYear)
+        public ActionResult<Music> Put(int id, [FromBody] Music music)
         {
-             
-            Music music = _musicRepo.Update(id, title, artist, duration, publicationYear);
-            if (music != null)
-            {
+            Music updated = _musicRepo.Update(
+                id,
+                music.Title,
+                music.Artist,
+                music.Duration,
+                music.PublicationYear
+            );
 
+            if (updated != null)
+                return Ok(updated);
 
-                return Ok(music);
-            }
-            else
-            {
-                return BadRequest();
-            }
+            return BadRequest();
         }
 
         // DELETE api/<MusicController>/5
         [Authorize]
 
         [HttpDelete("{id}")]
-        public ActionResult<Music> Delete([FromBody]int id)
+        public ActionResult<Music> Delete(int id)
         {
              
             Music music = _musicRepo.Delete(id);
