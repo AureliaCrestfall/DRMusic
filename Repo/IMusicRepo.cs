@@ -6,6 +6,9 @@ namespace DRMusic.Repo
     {
 
         List<Music> GetAllMusics();
-
+        Music Add(string title, string artist, int duration, DateTime publicationYear);
+        Music Delete(int id);
+        Music Get(int id);
+        Music Update(int id, string title, string artist, int duration, DateTime publicationYear);
     }
 }

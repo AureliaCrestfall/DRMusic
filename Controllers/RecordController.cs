@@ -1,5 +1,6 @@
 ﻿using DRMusic.Model;
 using DRMusic.Repo;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,34 +20,97 @@ namespace DRMusic.Controllers
 
         // GET: api/<MusicController>
         [HttpGet]
-        public IEnumerable<Music> Get()
+        public ActionResult<IEnumerable<Music>>Get()
         {
-            return _musicRepo.GetAllMusics();
+             
+            List<Music> music = _musicRepo.GetAllMusics();
+            if (music != null)
+            {
+
+
+                return Ok(music);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         // GET api/<MusicController>/5
+        [Authorize]
         [HttpGet("{id}")]
-        public string Get(int id)
+        public ActionResult<Music> Get(int id)
         {
-            return "value";
+            
+            Music music = _musicRepo.Get(id);
+            if (music != null)
+            {
+
+
+                return Ok(music);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         // POST api/<MusicController>
+        [Authorize]
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<Music> Post([FromBody] Music music)
         {
+            Music created = _musicRepo.Add(music.Title, music.Artist,music.Duration,music.PublicationYear);
+            if(created != null)
+            {
+
+            
+                return Ok(created);
+            }
+            else 
+            {
+                return BadRequest();
+            }
+            
         }
 
         // PUT api/<MusicController>/5
+        [Authorize]
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult<Music> Put(int id, [FromBody] Music music)
         {
+            Music updated = _musicRepo.Update(
+                id,
+                music.Title,
+                music.Artist,
+                music.Duration,
+                music.PublicationYear
+            );
+
+            if (updated != null)
+                return Ok(updated);
+
+            return BadRequest();
         }
 
         // DELETE api/<MusicController>/5
+        [Authorize]
+
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult<Music> Delete(int id)
         {
+             
+            Music music = _musicRepo.Delete(id);
+            if (music != null)
+            {
+
+
+                return Ok(music);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }
