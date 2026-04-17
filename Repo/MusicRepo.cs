@@ -78,6 +78,7 @@ namespace DRMusic.Repo
                 sqlConnection.Close();
                 
             }
+            nextID++;
             return music;
         }
 

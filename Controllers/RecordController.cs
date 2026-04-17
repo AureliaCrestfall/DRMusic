@@ -56,6 +56,7 @@ namespace DRMusic.Controllers
         }
 
         // POST api/<MusicController>
+        [Authorize]
         [HttpPost]
         public ActionResult<Music> Post([FromBody] Music music)
         {
@@ -74,6 +75,7 @@ namespace DRMusic.Controllers
         }
 
         // PUT api/<MusicController>/5
+        [Authorize]
         [HttpPut("{id}")]
         public ActionResult<Music> Put(int id, string title, string artist, int duration, DateTime publicationYear)
         {
@@ -92,8 +94,10 @@ namespace DRMusic.Controllers
         }
 
         // DELETE api/<MusicController>/5
+        [Authorize]
+
         [HttpDelete("{id}")]
-        public ActionResult<Music> Delete(int id)
+        public ActionResult<Music> Delete([FromBody]int id)
         {
              
             Music music = _musicRepo.Delete(id);
